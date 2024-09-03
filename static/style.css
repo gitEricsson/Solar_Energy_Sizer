@@ -1,0 +1,232 @@
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-design {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: url(mariana-proenca-_h0xG4s6NFg-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* top: -50%;
+  transform: skewY(-25deg); */
+  clip-path: polygon(0 0, 100% 0, 0% 100%, 0% 100%);
+  flex: 1 0 75%;
+  transform: translateX(0%);
+  z-index: -1;
+}
+.bg-design-2 {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: url(dad-hotel-63MgfKLnjgg-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -10;
+}
+
+svg {
+  margin-top: 3rem;
+  height: 100px;
+  width: 100px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+
+  /* background: url(soren-h-omfN1pW-n2Y-unsplash.jpg); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  width: 100%;
+}
+
+.header {
+  padding: 10px;
+  text-shadow: 10px 3px 10px #000000;
+  color: azure;
+  font-family: sans-serif;
+  position: absolute;
+  font-size: 4rem;
+  text-align: center;
+  align-self: center;
+}
+
+.summary p {
+  font-family: cursive;
+  position: absolute;
+  bottom: 10%;
+  font-size: 1.5rem;
+  padding: 0 15rem;
+  padding-top: 0;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  text-shadow: 10px 1px 10px #000000;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #123;
+}
+
+form {
+  max-width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 6rem;
+  grid-row-gap: 0.5rem;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  padding-top: 3rem;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 3rem;
+  grid-row-gap: 0.5rem;
+  align-items: center;
+}
+
+.form-group-btn {
+  display: block;
+  position: relative;
+  left: 50%;
+  margin-top: 4rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+select,
+input[type='number'],
+input[type='text'] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px 0;
+  display: inline-block;
+  border: solid;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.results {
+  font-size: 3rem;
+  font-family: cursive;
+  text-decoration: underline;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+
+  background: url(soren-h-omfN1pW-n2Y-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.results-container p {
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.graph-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 5rem;
+  grid-row-gap: 0.5rem;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+.graph img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+strong {
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 1.5px 1px 5px black;
+}
+
+.button-container {
+  margin: 3.5rem 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .header {
+    position: unset;
+    text-shadow: 3px 3px 3px #000000;
+    font-size: 3rem;
+  }
+
+  .summary p {
+    position: unset;
+    padding: 1rem;
+    text-shadow: 10px 1px 20px #000000;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-btn {
+    position: unset;
+  }
+
+  .graph-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

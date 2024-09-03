@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Solar Energy Calculator</title>
+  </head>
+
+  <body>
+    <div class="summary">
+      <span class="bg-design"></span>
+      <span class="bg-design-2"></span>
+
+      <h1 class="header">
+        Solar Energy <br />
+        Calculator
+      </h1>
+      <p>
+        This project is a Solar Energy evaluator built with Flask, which
+        calculates various solar module properties, energy output, and the
+        number of solar cells required based on user inputs.
+      </p>
+    </div>
+
+    <div class="container">
+      <svg
+        fill="#ffffff"
+        height="800px"
+        width="800px"
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 612.002 612.002"
+        xml:space="preserve"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <g id="SVGRepo_iconCarrier">
+          <g>
+            <g>
+              <path
+                d="M611.567,370.172c-15.485-104.763-30.977-209.528-46.472-314.286c-3.239-21.938-21.6-38.483-42.711-38.483H89.621 c-21.104,0-39.467,16.539-42.715,38.477l-8.119,54.91c-12.779,86.46-25.56,172.921-38.351,259.374 c-1.698,11.465,1.61,23,9.075,31.651c7.806,9.046,19.478,14.233,32.024,14.233h86.416l81.462,84.521h-44.902 c-6.075,0-11.35,4.708-12.265,10.942l-10.309,69.7c-0.489,3.356,0.492,6.735,2.686,9.268c2.265,2.62,5.628,4.121,9.224,4.121 h304.305c3.605,0,6.971-1.506,9.238-4.133c2.19-2.54,3.165-5.919,2.668-9.279l-10.3-69.652 c-0.908-6.25-6.181-10.966-12.265-10.966h-44.903l81.46-84.521h86.415c12.543,0,24.216-5.187,32.022-14.232 C609.953,393.166,613.263,381.633,611.567,370.172z M308.865,500.569h-5.722l-81.46-84.521h168.639L308.865,500.569z M52.305,365.435c12.192-82.413,24.374-164.828,36.556-247.243l7.414-50.175h419.452c14.66,99.139,29.318,198.279,43.974,297.418 H52.305z"
+              />
+              <polygon
+                points="356.566,96.844 252.065,96.844 248.42,201.915 360.211,201.915 "
+              />
+              <path
+                d="M388.532,229.269l3.643,105.065h123.039c-5.178-35.023-10.36-70.042-15.534-105.065L388.532,229.269L388.532,229.269z"
+              />
+              <polygon
+                points="247.472,229.269 243.831,334.335 364.806,334.335 361.159,229.269 "
+              />
+              <path
+                d="M480.101,96.844h-96.167l3.647,105.071h108.053C490.459,166.888,485.279,131.867,480.101,96.844z"
+              />
+              <path
+                d="M119.984,154.651c-2.324,15.756-4.655,31.51-6.98,47.264h108.049l3.645-105.071h-96.162L119.984,154.651z"
+              />
+              <path
+                d="M93.418,334.335h123.039l3.648-105.065H108.952C103.778,264.292,98.6,299.312,93.418,334.335z"
+              />
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <form action="/calculate" method="POST">
+        <div>
+          <!-- Wavelength input -->
+          <div class="form-group">
+            <label for="wavelength">Wavelength (nm):</label>
+            <input type="number" name="wavelength" id="wavelength" required />
+          </div>
+        </div>
+
+        <div>
+          <!-- SAM Passivation Layer Properties -->
+          <h2>SAM Passivation Layer Properties</h2>
+          <div class="form-group">
+            <label for="sam_ri">Refractive Index (n):</label>
+            <input
+              type="number"
+              name="sam_ri"
+              step="0.01"
+              id="sam_ri"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="sam_k">Extinction Coefficient (k):</label>
+            <input type="number" name="sam_k" step="0.01" id="sam_k" required />
+          </div>
+          <div class="form-group">
+            <label for="sam_thickness">Thickness (µm):</label>
+            <input
+              type="number"
+              name="sam_thickness"
+              step="0.001"
+              id="sam_thickness"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <!-- Substrate Properties -->
+          <h2>Substrate Properties</h2>
+          <div class="form-group">
+            <label for="substrate_ri">Refractive Index (n):</label>
+            <input
+              type="number"
+              step="0.01"
+              name="substrate_ri"
+              id="substrate_ri"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="substrate_thickness">Thickness (µm):</label>
+            <input
+              type="number"
+              name="substrate_thickness"
+              step="0.001"
+              id="substrate_thickness"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <!-- Transparent Electrode Properties -->
+          <h2>Transparent Electrode Properties</h2>
+          <div class="form-group">
+            <label for="electrode_ri">Refractive Index (n):</label>
+            <input
+              type="number"
+              name="electrode_ri"
+              step="0.01"
+              id="electrode_ri"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="electrode_k">Extinction Coefficient (k):</label>
+            <input
+              type="number"
+              name="electrode_k"
+              step="0.01"
+              id="electrode_k"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="electrode_thickness">Thickness (µm):</label>
+            <input
+              type="number"
+              name="electrode_thickness"
+              step="0.001"
+              id="electrode_thickness"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <!-- Photoanode (TiO2) Properties -->
+          <h2>Photoanode (TiO2) Properties</h2>
+          <div class="form-group">
+            <label for="photoanode_ri">Refractive Index (n):</label>
+            <input
+              type="number"
+              name="photoanode_ri"
+              step="0.01"
+              id="photoanode_ri"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="photoanode_k">Extinction Coefficient (k):</label>
+            <input
+              type="number"
+              name="photoanode_k"
+              step="0.01"
+              id="photoanode_k"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="photoanode_thickness">Thickness (µm):</label>
+            <input
+              type="number"
+              name="photoanode_thickness"
+              step="0.001"
+              id="photoanode_thickness"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <!-- Mimosa pudica Dye Properties -->
+          <h2>Mimosa pudica Dye Properties</h2>
+          <div class="form-group">
+            <label for="dye_ri">Refractive Index (n):</label>
+            <input
+              type="number"
+              name="dye_ri"
+              step="0.01"
+              id="dye_ri"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="dye_k">Extinction Coefficient (k):</label>
+            <input type="number" name="dye_k" step="0.01" id="dye_k" required />
+          </div>
+          <div class="form-group">
+            <label for="dye_thickness">Thickness (µm):</label>
+            <input
+              type="number"
+              name="dye_thickness"
+              step="0.001"
+              id="dye_thickness"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <!-- Additional Fields -->
+          <h2>Solar Irradiance and Load Properties</h2>
+          <div class="form-group">
+            <label for="solar_irradiance"
+              >Solar Irradiance in Location(per day):</label
+            >
+            <input
+              type="number"
+              name="solar_irradiance"
+              id="solar_irradiance"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="area">Total area of Solar Panels(m²):</label>
+            <input type="number" name="area" id="area" required />
+          </div>
+          <div class="form-group">
+            <label for="num_hours">Hours of operation(per day):</label>
+            <input type="number" name="num_hours" id="num_hours" required />
+          </div>
+          <div class="form-group">
+            <label for="refrigerator_load">Refrigerator Load (W):</label>
+            <input
+              type="number"
+              name="refrigerator_load"
+              id="refrigerator_load"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="freezer_load">Freezer Load (W):</label>
+            <input
+              type="number"
+              name="freezer_load"
+              id="freezer_load"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="fan_load">Fan Load (W):</label>
+            <input type="number" name="fan_load" id="fan_load" required />
+          </div>
+          <div class="form-group">
+            <label for="ac_load">Air Conditioner Load (W):</label>
+            <input type="number" name="ac_load" id="ac_load" required />
+          </div>
+          <div class="form-group">
+            <label for="other_load">Other Load (W):</label>
+            <input type="number" name="other_load" id="other_load" required />
+          </div>
+
+          <div class="form-group-btn">
+            <button type="submit" class="btn">Calculate Energy Output</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

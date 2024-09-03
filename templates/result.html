@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Calculation Result</title>
+  </head>
+  <body>
+    <div class="results-container">
+      <h1 class="results">Results</h1>
+      <p><strong>Energy Output:</strong> {{ energy_output }} kWh</p>
+      <p><strong>Efficiency:</strong> {{ efficiency }} %</p>
+      <p><strong>Number of Solar Cells Required:</strong> {{ num_cells }}</p>
+
+      <h1 class="results">Graphs</h1>
+      <div class="graph-container">
+        <div class="graph">
+          <img
+            src="data:image/png;base64, {{ reflectance_vs_transmittance_plot }}"
+          />
+        </div>
+        <div class="graph">
+          <img
+            src="data:image/png;base64, {{ absorbance_vs_transmittance_plot }}"
+          />
+        </div>
+        <div class="graph">
+          <img
+            src="data:image/png;base64, {{ number_of_cells_vs_total_load_plot }}"
+          />
+        </div>
+        <div class="graph">
+          <img
+            src="data:image/png;base64, {{ number_of_cells_vs_energy_yield_plot }}"
+          />
+        </div>
+        <div class="graph">
+          <img src="data:image/png;base64, {{ delta_substrate_plot }}" />
+        </div>
+        <div class="graph">
+          <img src="data:image/png;base64, {{ delta_fto_plot }}" />
+        </div>
+        <div class="graph">
+          <img src="data:image/png;base64, {{ delta_photoanode_plot }}" />
+        </div>
+        <div class="graph">
+          <img src="data:image/png;base64, {{ delta_dye_plot }}" />
+        </div>
+      </div>
+
+      <!-- Centering the button -->
+      <div class="button-container">
+        <a href="/" class="btn">Back to Calculator</a>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
